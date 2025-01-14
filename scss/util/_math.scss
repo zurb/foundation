@@ -145,7 +145,7 @@
     }
   }
 
-  @return percentage(divide($parsed-nominator, $parsed-denominator));
+  @return math.percentage(divide($parsed-nominator, $parsed-denominator));
 }
 
 /// Divide the given `$divident` by the given `$divisor`.
