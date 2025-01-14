@@ -6,6 +6,8 @@
 /// @group xy-grid
 ////
 
+@use "sass:meta";
+
 /// Create gutters for a cell/container.
 ///
 /// @param {Number|Map} $gutters [$grid-margin-gutters] - Map or single value for gutters.
@@ -24,7 +26,7 @@
   $gutter-type: if($negative, 'margin', $gutter-type);
 
   // Output our margin gutters.
-  @if (type-of($gutters) == 'map') {
+  @if (meta.type-of($gutters) == 'map') {
     @include -zf-breakpoint-value(auto, $gutters) {
       $gutter: rem-calc($-zf-bp-value) * 0.5;
 
@@ -34,7 +36,7 @@
       }
     }
   }
-  @else if (type-of($gutters) == 'number') {
+  @else if (meta.type-of($gutters) == 'number') {
     $gutter: rem-calc($gutters) * 0.5;
 
     // Loop through each gutter position

@@ -3,6 +3,7 @@
 // Licensed under MIT Open Source
 
 @use "sass:math";
+@use "sass:meta";
 
 ////
 /// @group functions
@@ -80,7 +81,7 @@
 /// @return {List} List of parsed values with numerator at first position and denumerator as second. These values may be null.
 @function zf-parse-fraction($fraction) {
 
-  @if type-of($fraction) == 'number' {
+  @if meta.type-of($fraction) == 'number' {
     // "50%"
     @if unit($fraction) == '%' {
       @return (strip-unit($fraction), 100);
@@ -97,11 +98,11 @@
     }
   }
 
-  @else if type-of($fraction) == 'list' {
+  @else if meta.type-of($fraction) == 'list' {
     // "50 of 100", "50/100"...
     @if length($fraction) == 3
-    and type-of(nth($fraction, 1) == 'number')
-    and type-of(nth($fraction, 3) == 'number') {
+    and meta.type-of(nth($fraction, 1) == 'number')
+    and meta.type-of(nth($fraction, 3) == 'number') {
       @return (nth($fraction, 1), nth($fraction, 3));
     }
   }
@@ -137,7 +138,7 @@
     @error 'Wrong syntax for "fraction-to-percentage()". Use a number, decimal, percentage, or "n of n" / "n/n".';
   }
   @if $parsed-denominator == null {
-    @if type-of($denominator) == 'number' {
+    @if meta.type-of($denominator) == 'number' {
       $parsed-denominator: $denominator;
     }
     @else {

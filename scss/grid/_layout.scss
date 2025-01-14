@@ -6,6 +6,8 @@
 /// @group grid
 ////
 
+@use "sass:meta";
+
 /// Sizes child elements so that `$n` number of items appear on each row.
 ///
 /// @param {Number} $n - Number of elements to display per row.
@@ -26,7 +28,7 @@
     // If a $gutter value is passed
     @if($gutter) {
       // Gutters
-      @if type-of($gutter) == 'map' {
+      @if meta.type-of($gutter) == 'map' {
         @each $breakpoint, $value in $gutter {
           $padding: rem-calc($value) * 0.5;
 
@@ -36,7 +38,7 @@
           }
         }
       }
-      @else if type-of($gutter) == 'number' and strip-unit($gutter) > 0 {
+      @else if meta.type-of($gutter) == 'number' and strip-unit($gutter) > 0 {
         $padding: rem-calc($gutter) * 0.5;
         padding-right: $padding;
         padding-left: $padding;

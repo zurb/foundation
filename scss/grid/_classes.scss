@@ -6,6 +6,8 @@
 /// @group grid
 ////
 
+@use "sass:meta";
+
 /// Outputs CSS classes for the grid.
 /// @access private
 @mixin foundation-grid(
@@ -59,7 +61,7 @@
       @include grid-row-size(expand);
     }
 
-    @if type-of($grid-column-gutter) == 'map' {
+    @if meta.type-of($grid-column-gutter) == 'map' {
       // Static (unresponsive) row gutters
       //
       @each $breakpoint, $value in $grid-column-gutter {

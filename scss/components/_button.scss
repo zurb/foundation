@@ -6,6 +6,8 @@
 /// @group button
 ////
 
+@use "sass:meta";
+
 /// Font family for button elements.
 /// @type Font
 $button-font-family: inherit !default;
@@ -109,7 +111,7 @@ $button-responsive-expanded: false !default;
   text-align: center;
   cursor: pointer;
 
-  @if (type-of($button-padding) == 'map') {
+  @if (meta.type-of($button-padding) == 'map') {
     @each $size, $padding in $button-padding {
       @include breakpoint($size) {
         padding: $padding;

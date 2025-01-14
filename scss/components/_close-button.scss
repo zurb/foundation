@@ -6,6 +6,8 @@
 /// @group close-button
 ////
 
+@use "sass:meta";
+
 /// Default position of the close button. The first value should be `right` or `left`, and the second value should be `top` or `bottom`.
 /// @type List
 $closebutton-position: right top !default;
@@ -63,7 +65,7 @@ $closebutton-color-hover: $black !default;
 /// @return {Number} The given number or the value found in the map.
 @function -zf-get-size-val($value, $size) {
   // Check if the value is a number
-  @if type-of($value) == 'number' {
+  @if meta.type-of($value) == 'number' {
     // If it is, just return the number
     @return $value;
   }

@@ -6,6 +6,8 @@
 /// @group grid
 ////
 
+@use "sass:meta";
+
 /// Reposition a column.
 ///
 /// @param {Number|Keyword} $position - It can be:
@@ -31,7 +33,7 @@
   }
 
   // Push/pull
-  @else if type-of($position) == 'number' {
+  @else if meta.type-of($position) == 'number' {
     $offset: percentage(divide($position, $grid-column-count));
 
     position: relative;

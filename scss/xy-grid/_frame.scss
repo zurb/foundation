@@ -1,5 +1,7 @@
 // sass-lint:disable no-vendor-prefixes
 
+@use "sass:meta";
+
 /// Modifies a grid to give it "frame" behavior (no overflow, no wrap, stretch behavior)
 ///
 /// @param {Boolean} $vertical [false] - Is grid vertical or horizontal. Should match grid.
@@ -22,7 +24,7 @@
     align-items: stretch;
   }
 
-  @if $breakpoint == null and type-of($gutters) == 'map' {
+  @if $breakpoint == null and meta.type-of($gutters) == 'map' {
     @include -zf-each-breakpoint() {
       @include xy-grid-frame($vertical, $nested, $gutters, $-zf-size, false);
     }

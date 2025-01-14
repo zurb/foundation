@@ -6,6 +6,8 @@
 /// @group functions
 ////
 
+@use "sass:meta";
+
 /// Determine if a value is not falsey, in CSS terms. Falsey values are `null`, `none`, `0` with any unit, or an empty list.
 ///
 /// @param {Mixed} $val - Value to check.
@@ -15,10 +17,10 @@
   @if $val == null or $val == none {
     @return false;
   }
-  @if type-of($val) == 'number' and strip-unit($val) == 0 {
+  @if meta.type-of($val) == 'number' and strip-unit($val) == 0 {
     @return false;
   }
-  @if type-of($val) == 'list' and length($val) == 0 {
+  @if meta.type-of($val) == 'list' and length($val) == 0 {
     @return false;
   }
   @return true;
@@ -56,7 +58,7 @@
 @function get-border-value($val, $elem) {
   // Find the width, style, or color and return it
   @each $v in $val {
-    $type: type-of($v);
+    $type: meta.type-of($v);
     @if $elem == width and $type == 'number' {
       @return $v;
     }
@@ -100,7 +102,7 @@
 @function map-to-list($map, $keep: 'both') {
   $keep: if(index('keys' 'values', $keep), $keep, 'both');
 
-  @if type-of($map) == 'map' {
+  @if meta.type-of($map) == 'map' {
     $keys: ();
     $values: ();
 
@@ -120,7 +122,7 @@
     }
   }
 
-  @return if(type-of($map) != 'list', ($value,), $map);
+  @return if(meta.type-of($map) != 'list', ($value,), $map);
 
 }
 
@@ -160,7 +162,7 @@
 ///
 /// @returns {List} Found value.
 @function map-safe-get($map, $key) {
-  @if (type-of($map) == 'map' or (type-of($map) == 'list' and length($map) == 0)) {
+  @if (meta.type-of($map) == 'map' or (meta.type-of($map) == 'list' and length($map) == 0)) {
     @if (map-has-key($map, $key)) {
       @return map-get($map, $key);
     }
