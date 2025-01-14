@@ -6,6 +6,8 @@
 /// @group flex-grid
 ////
 
+@use "sass:math";
+
 /// Creates a container for a flex grid row.
 ///
 /// @param {Keyword|List} $behavior [null]
@@ -103,7 +105,7 @@
   flex-wrap: wrap;
 
   > #{$selector} {
-    $pct: percentage(divide(1, $n));
+    $pct: math.percentage(divide(1, $n));
 
     flex: 0 0 $pct;
     max-width: $pct;

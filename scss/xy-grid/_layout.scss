@@ -6,6 +6,8 @@
 /// @group xy-grid
 ////
 
+@use "sass:math";
+
 /// Sizes child elements so that `$n` number of items appear on each row.
 ///
 /// @param {Number} $n - Number of elements to display per row.
@@ -28,7 +30,7 @@
   $vertical: false,
   $output: (base size gutters)
 ) {
-  $size: percentage(divide(1, $n));
+  $size: math.percentage(divide(1, $n));
 
   & > #{$selector} {
     @include xy-cell($size, $gutter-output, $gutters, $gutter-type, $gutter-position, $breakpoint, $vertical, $output);

@@ -6,6 +6,8 @@
 /// @group grid
 ////
 
+@use "sass:math";
+
 /// Sizes child elements so that `$n` number of items appear on each row.
 ///
 /// @param {Number} $n - Number of elements to display per row.
@@ -21,7 +23,7 @@
 ) {
   & > #{$selector} {
     float: $global-left;
-    width: percentage(divide(1, $n));
+    width: math.percentage(divide(1, $n));
 
     // If a $gutter value is passed
     @if($gutter) {
