@@ -3,6 +3,7 @@
 // Licensed under MIT Open Source
 
 @use "sass:math";
+@use "sass:list";
 
 ////
 /// @group functions
@@ -68,8 +69,8 @@
 /// @param {List} $ratio - Ratio to use to calculate the height, formatted as `x by y`.
 /// @return {Number} A percentage value for the height relative to the width of a responsive container.
 @function ratio-to-percentage($ratio) {
-  $w: nth($ratio, 1);
-  $h: nth($ratio, 3);
+  $w: list.nth($ratio, 1);
+  $h: list.nth($ratio, 3);
   @return divide($h, $w) * 100%;
 }
 
@@ -100,9 +101,9 @@
   @else if type-of($fraction) == 'list' {
     // "50 of 100", "50/100"...
     @if length($fraction) == 3
-    and type-of(nth($fraction, 1) == 'number')
-    and type-of(nth($fraction, 3) == 'number') {
-      @return (nth($fraction, 1), nth($fraction, 3));
+    and type-of(list.nth($fraction, 1) == 'number')
+    and type-of(list.nth($fraction, 3) == 'number') {
+      @return (list.nth($fraction, 1), list.nth($fraction, 3));
     }
   }
 
@@ -117,8 +118,8 @@
 /// @return {Boolean} `true` if `$value` represents a fraction, `false` otherwise.
 @function zf-is-fraction($value, $allow-no-denominator: false) {
   $parsed: zf-parse-fraction($value);
-  @return not(nth($parsed, 1) == null
-    or (nth($parsed, 2) == null and $allow-no-denominator == false));
+  @return not(list.nth($parsed, 1) == null
+    or (list.nth($parsed, 2) == null and $allow-no-denominator == false));
 }
 
 /// Calculate a percentage from a given fraction.
@@ -130,8 +131,8 @@
   $denominator: null
 ) {
   $parsed: zf-parse-fraction($fraction);
-  $parsed-nominator: nth($parsed, 1);
-  $parsed-denominator: nth($parsed, 2);
+  $parsed-nominator: list.nth($parsed, 1);
+  $parsed-denominator: list.nth($parsed, 2);
 
   @if $parsed-nominator == null {
     @error 'Wrong syntax for "fraction-to-percentage()". Use a number, decimal, percentage, or "n of n" / "n/n".';

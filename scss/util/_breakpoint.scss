@@ -6,6 +6,8 @@
 /// @group breakpoints
 ////
 
+@use "sass:list";
+
 /// Patch to fix issue #12080
 $-zf-size: null;
 
@@ -38,11 +40,11 @@ $-zf-zero-breakpoint: small !default;
 
 $-zf-breakpoints-keys: map-to-list($breakpoints, 'keys');
 
-@if nth(map-values($breakpoints), 1) != 0 {
+@if list.nth(map-values($breakpoints), 1) != 0 {
   @error 'The first key in the $breakpoints map must have a value of "0".';
 }
 @else {
-  $-zf-zero-breakpoint: nth(map-keys($breakpoints), 1);
+  $-zf-zero-breakpoint: list.nth(map-keys($breakpoints), 1);
 }
 
 /// All of the names in this list will be output as classes in your CSS, like `.small-12`, `.medium-6`, and so on. Each value in this list must also be in the `$breakpoints` map.
@@ -58,7 +60,7 @@ $breakpoint-classes: (small medium large) !default;
   $std-web-dpi: 96;
 
   // Size or keyword
-  $bp: nth($val, 1);
+  $bp: list.nth($val, 1);
   // Value of the following breakpoint
   $bp-next: null;
   // Value for max-width media queries
@@ -66,7 +68,7 @@ $breakpoint-classes: (small medium large) !default;
   // Value for min-width media queries
   $bp-max: null;
   // Direction of media query (up, down, or only)
-  $dir: if(length($val) > 1, nth($val, 2), up);
+  $dir: if(length($val) > 1, list.nth($val, 2), up);
   // If named, name of the breakpoint
   $name: null;
   // If the breakpoint is a HiDPI breakpoint
@@ -151,12 +153,12 @@ $breakpoint-classes: (small medium large) !default;
 /// @output If the breakpoint is "0px and larger", outputs the content as-is. Otherwise, outputs the content wrapped in a media query.
 @mixin breakpoint($values...) {
   @for $i from 1 through length($values) {
-    $value: nth($values, $i);
+    $value: list.nth($values, $i);
     $str: breakpoint($value);
-    $bp: index($-zf-breakpoints-keys, nth($value, 1));
+    $bp: index($-zf-breakpoints-keys, list.nth($value, 1));
     $pbp: index($-zf-breakpoints-keys, $print-breakpoint);
     // Direction of media query (up, down, or only)
-    $dir: if(length($value) > 1, nth($value, 2), up);
+    $dir: if(length($value) > 1, list.nth($value, 2), up);
 
     $old-zf-size: null;
 
@@ -164,7 +166,7 @@ $breakpoint-classes: (small medium large) !default;
     @if global-variable-exists(-zf-size) {
       $old-zf-size: $-zf-size;
     }
-    $-zf-size: nth($value, 1) !global; // get the first value to account for `only` and `down` keywords
+    $-zf-size: list.nth($value, 1) !global; // get the first value to account for `only` and `down` keywords
 
     // If $str is still an empty string, no media query is needed
     @if $str == '' {
@@ -233,7 +235,7 @@ $breakpoint-classes: (small medium large) !default;
   }
   // Otherwise, return the value
   @else {
-    @return map-get($map, nth($values, $i));
+    @return map-get($map, list.nth($values, $i));
   }
 
 }

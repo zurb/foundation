@@ -6,6 +6,8 @@
 /// @group dropdown-menu
 ////
 
+@use "sass:list";
+
 /// Enables arrows for items with dropdown menus.
 /// @type Boolean
 $dropdownmenu-arrows: true !default;
@@ -53,7 +55,7 @@ $dropdownmenu-border: 1px solid $medium-gray !default;
 // Border width for dropdown sub-menus.
 // Used to adjust top margin of a sub-menu if a border is used.
 // @type Length
-$dropdownmenu-border-width: nth($dropdownmenu-border, 1);
+$dropdownmenu-border-width: list.nth($dropdownmenu-border, 1);
 
 /// Text color of an active dropdown menu item. Explicit override for menu defaults
 /// @type Color

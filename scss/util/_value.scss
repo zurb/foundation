@@ -6,6 +6,8 @@
 /// @group functions
 ////
 
+@use "sass:list";
+
 /// Determine if a value is not falsey, in CSS terms. Falsey values are `null`, `none`, `0` with any unit, or an empty list.
 ///
 /// @param {Mixed} $val - Value to check.
@@ -37,13 +39,13 @@
     @return $val;
   }
   @if $length == 2 {
-    @return map-get((top: nth($val, 1), bottom: nth($val, 1), left: nth($val, 2), right: nth($val, 2), ), $side);
+    @return map-get((top: list.nth($val, 1), bottom: list.nth($val, 1), left: list.nth($val, 2), right: list.nth($val, 2), ), $side);
   }
   @if $length == 3 {
-    @return map-get((top: nth($val, 1), left: nth($val, 2), right: nth($val, 2), bottom: nth($val, 3), ), $side);
+    @return map-get((top: list.nth($val, 1), left: list.nth($val, 2), right: list.nth($val, 2), bottom: list.nth($val, 3), ), $side);
   }
   @if $length == 4 {
-    @return map-get((top: nth($val, 1), right: nth($val, 2), bottom: nth($val, 3), left: nth($val, 4), ), $side);
+    @return map-get((top: list.nth($val, 1), right: list.nth($val, 2), bottom: list.nth($val, 3), left: list.nth($val, 4), ), $side);
   }
 }
 
