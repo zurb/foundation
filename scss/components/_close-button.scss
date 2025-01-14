@@ -6,6 +6,8 @@
 /// @group close-button
 ////
 
+@use "sass:list";
+
 /// Default position of the close button. The first value should be `right` or `left`, and the second value should be `top` or `bottom`.
 /// @type List
 $closebutton-position: right top !default;
@@ -78,8 +80,8 @@ $closebutton-color-hover: $black !default;
 /// Sets the size and position of a close button.
 /// @param {Keyword} $size [medium] - The size to use. Set to `small` to create a small close button. The 'medium' values defined in `$closebutton-*` variables will be used as the default size and position of the close button.
 @mixin close-button-size($size) {
-  $x: nth($closebutton-position, 1);
-  $y: nth($closebutton-position, 2);
+  $x: list.nth($closebutton-position, 1);
+  $y: list.nth($closebutton-position, 2);
 
   #{$x}: -zf-get-size-val($closebutton-offset-horizontal, $size);
   #{$y}: -zf-get-size-val($closebutton-offset-vertical, $size);
@@ -89,8 +91,8 @@ $closebutton-color-hover: $black !default;
 
 /// Adds styles for a close button, using the styles in the settings variables.
 @mixin close-button {
-  $x: nth($closebutton-position, 1);
-  $y: nth($closebutton-position, 2);
+  $x: list.nth($closebutton-position, 1);
+  $y: list.nth($closebutton-position, 2);
 
   position: absolute;
   z-index: $closebutton-z-index;
