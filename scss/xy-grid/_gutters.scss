@@ -6,6 +6,8 @@
 /// @group xy-grid
 ////
 
+@use "sass:string";
+
 /// Create gutters for a cell/container.
 ///
 /// @param {Number|Map} $gutters [$grid-margin-gutters] - Map or single value for gutters.
@@ -30,7 +32,7 @@
 
       // Loop through each gutter position
       @each $value in $gutter-position {
-        #{$gutter-type}-#{$value}: unquote("#{$operator}#{$gutter}");
+        #{$gutter-type}-#{$value}: string.unquote("#{$operator}#{$gutter}");
       }
     }
   }
@@ -39,7 +41,7 @@
 
     // Loop through each gutter position
     @each $value in $gutter-position {
-      #{$gutter-type}-#{$value}: unquote("#{$operator}#{$gutter}");
+      #{$gutter-type}-#{$value}: string.unquote("#{$operator}#{$gutter}");
     }
   }
 }
