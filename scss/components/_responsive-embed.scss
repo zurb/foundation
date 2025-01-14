@@ -6,6 +6,8 @@
 /// @group responsive-embed
 ////
 
+@use "sass:meta";
+
 /// Margin below a responsive embed container.
 /// @type Number
 $responsive-embed-margin-bottom: rem-calc(16) !default;
@@ -20,7 +22,7 @@ $responsive-embed-ratios: (
 /// Creates a responsive embed container.
 /// @param {String|List} $ratio [default] - Ratio of the container. Can be a key from the `$responsive-embed-ratios` map or a list formatted as `x by y`.
 @mixin responsive-embed($ratio: default) {
-  @if type-of($ratio) == 'string' {
+  @if meta.type-of($ratio) == 'string' {
     $ratio: map-get($responsive-embed-ratios, $ratio);
   }
   position: relative;

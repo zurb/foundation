@@ -6,6 +6,8 @@
 /// @group xy-grid
 ////
 
+@use "sass:meta";
+
 /// Returns the appropriate CSS flex value for a cell base.
 ///
 /// @param {Keyword} $size [full] - The size of your cell. Accepts `full`, `auto`, `shrink`, `grow`, or any other value representing a cell size (it will be treated as `shrink`).
@@ -96,7 +98,7 @@
 
   // Calculate the cell CSS size including gutters (string)
   // If the cell has responsive margin gutters, return a responsive map of sizes.
-  @if type-of($margin-gutter) == 'map' {
+  @if meta.type-of($margin-gutter) == 'map' {
     $responsive-css-sizes: ();
 
     @each $bp, $mg in $margin-gutter {
@@ -167,7 +169,7 @@
   $sizes: xy-cell-size-css($size, $gutters, $gutter-type, $breakpoint);
   $direction: if($vertical == true, height, width);
 
-  @if (type-of($sizes) == 'map') {
+  @if (meta.type-of($sizes) == 'map') {
     @include -zf-breakpoint-value(auto, $sizes) {
       #{$direction}: $-zf-bp-value;
     }

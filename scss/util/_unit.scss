@@ -2,6 +2,7 @@
 // https://get.foundation
 // Licensed under MIT Open Source
 
+@use "sass:meta";
 @import 'math';
 
 $unit-warnings: true !default;
@@ -78,7 +79,7 @@ $global-font-size: 100% !default;
 /// @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
 @function -zf-to-rem($value, $base: null) {
   // Check if the value is a number
-  @if type-of($value) != 'number' {
+  @if meta.type-of($value) != 'number' {
     @if $unit-warnings {
       @warn inspect($value) + ' was passed to rem-calc(), which is not a number.';
     }

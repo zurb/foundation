@@ -6,6 +6,8 @@
 /// @group breakpoints
 ////
 
+@use "sass:meta";
+
 /// Patch to fix issue #12080
 $-zf-size: null;
 
@@ -78,7 +80,7 @@ $breakpoint-classes: (small medium large) !default;
   }
 
   // If a breakpoint name is given, get its value from the $breakpoints/$breakpoints-hidpi map.
-  @if type-of($bp) == 'string' {
+  @if meta.type-of($bp) == 'string' {
     @if map-has-key($breakpoints, $bp) {
       $name: $bp;
       $bp: map-get($breakpoints, $name);
@@ -250,7 +252,7 @@ $breakpoint-classes: (small medium large) !default;
   $next-number: null;
 
   @each $k, $v in $map {
-    @if type-of($v) == 'number' and $v > $number and ($next-number == null or $v < $next-number) {
+    @if meta.type-of($v) == 'number' and $v > $number and ($next-number == null or $v < $next-number) {
       $next-number: $v;
     }
   }
@@ -317,14 +319,14 @@ $breakpoint-classes: (small medium large) !default;
 /// @return {Mixed} The corresponding breakpoint value.
 @function -zf-get-bp-val($map, $value) {
   // If the given map is a single value, return it
-  @if type-of($map) == 'number' {
+  @if meta.type-of($map) == 'number' {
     @return $map;
   }
 
 
   // Check if the breakpoint name exists globally
   @if not map-has-key($breakpoints, $value) {
-    @if type-of($value) == 'number' {
+    @if meta.type-of($value) == 'number' {
       $value: -zf-closest-named-breakpoint($value);
     } @else {
       @return null;
@@ -369,7 +371,7 @@ $breakpoint-classes: (small medium large) !default;
   @if ($value != null) {
     @return $value;
   }
-  @else if (variable-exists(-zf-size) and type-of($-zf-size) != 'number') and $-zf-size != null {
+  @else if (variable-exists(-zf-size) and meta.type-of($-zf-size) != 'number') and $-zf-size != null {
     @return $-zf-size;
   }
   @else {

@@ -6,6 +6,8 @@
 /// @group dropdown-menu
 ////
 
+@use "sass:meta";
+
 /// Enables arrows for items with dropdown menus.
 /// @type Boolean
 $dropdownmenu-arrows: true !default;
@@ -260,7 +262,7 @@ $dropdown-menu-item-background-active: transparent !default;
       }
     }
 
-    @if (type-of($dropdownmenu-border-width) == 'number') {
+    @if (meta.type-of($dropdownmenu-border-width) == 'number') {
       .is-dropdown-submenu {
         margin-top: (-$dropdownmenu-border-width);
       }

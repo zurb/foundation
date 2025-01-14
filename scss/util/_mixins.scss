@@ -7,6 +7,7 @@
 ////
 
 @use "sass:color";
+@use "sass:meta";
 
 // Patch to fix issue #12080
 $-zf-bp-value: null;
@@ -301,15 +302,15 @@ $-zf-bp-value: null;
   @if $breakpoints == auto {
     $-list: $breakpoint-classes;
   }
-  @else if type-of($breakpoints) == 'list' {
+  @else if meta.type-of($breakpoints) == 'list' {
     $-list: $breakpoints;
   }
-  @else if type-of($breakpoints) == 'string' {
+  @else if meta.type-of($breakpoints) == 'string' {
     $-list: ($breakpoints);
     $-breakpoints-is-a-list: false;
   }
   @else {
-    @error 'Wrong syntax for "$breakpoints" in "-zf-each-breakpoint-in()". Got "#{$breakpoints}" (#{type-of($breakpoints)}). Expected a breakpoint name, a list of breakpoints or "auto"';
+    @error 'Wrong syntax for "$breakpoints" in "-zf-each-breakpoint-in()". Got "#{$breakpoints}" (#{meta.type-of($breakpoints)}). Expected a breakpoint name, a list of breakpoints or "auto"';
   }
 
   // Add or remove the zero breakpoint according to `$zero-breakpoint`
@@ -351,7 +352,7 @@ $-zf-bp-value: null;
   $name: auto,
   $map: null
 ) {
-  @if $name == auto and type-of($map) == 'map' {
+  @if $name == auto and meta.type-of($map) == 'map' {
     // "auto"
     @each $k, $v in $map {
       @include breakpoint($k) {
@@ -363,7 +364,7 @@ $-zf-bp-value: null;
   }
   @else {
     // breakpoint name
-    @if type-of($name) == 'string' {
+    @if meta.type-of($name) == 'string' {
       $bp-value: -zf-get-bp-val($map, $name);
       @if $bp-value != null {
         $name: $bp-value;

@@ -6,6 +6,8 @@
 /// @group xy-grid
 ////
 
+@use "sass:meta";
+
 // Margin Grid classes
 @mixin xy-base-grid-classes {
 
@@ -143,7 +145,7 @@
 
     // base styles need to all be before the auto and shrink styles
     @include -zf-each-breakpoint() {
-      @if(type-of($grid-margin-gutters) == 'map' and map-has-key($grid-margin-gutters, $-zf-size) and $-zf-size != $-zf-zero-breakpoint) {
+      @if(meta.type-of($grid-margin-gutters) == 'map' and map-has-key($grid-margin-gutters, $-zf-size) and $-zf-size != $-zf-zero-breakpoint) {
         > .cell {
           @include xy-cell($vertical: $vertical, $output: (size gutters));
         }
@@ -156,7 +158,7 @@
       // for all prior breakpoints.
       // As their gutter is defined with their width/height, even breakpoint without a new margin must be
       // generated to not having their width/height overrided by re-adjusted smaller breakpoints.
-      @if(type-of($grid-margin-gutters) == 'map' and map-has-key($grid-margin-gutters, $-zf-size)) {
+      @if(meta.type-of($grid-margin-gutters) == 'map' and map-has-key($grid-margin-gutters, $-zf-size)) {
         @each $bp in -zf-breakpoints-less-than($-zf-size) {
           @include -xy-breakpoint-cell-classes($bp, $-zf-size, $vertical);
         }
@@ -206,7 +208,7 @@
       @for $i from 1 through $xy-block-grid-max {
         // This is purely for responsive gutters - the margin grid has to go back and adjust widths (or heights)
         // for prior breakpoints based on the responsive gutter.
-        @if(type-of($grid-margin-gutters) == 'map' and map-has-key($grid-margin-gutters, $-zf-size)) {
+        @if(meta.type-of($grid-margin-gutters) == 'map' and map-has-key($grid-margin-gutters, $-zf-size)) {
           @each $bp in -zf-breakpoints-less-than($-zf-size) {
             @if(map-has-key($grid-margin-gutters, $bp)) {
               .grid-margin-x.#{$bp}-up-#{$i} {
