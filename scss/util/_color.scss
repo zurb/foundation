@@ -3,6 +3,7 @@
 // Licensed under MIT Open Source
 
 @use "sass:color";
+@use "sass:list";
 @import 'math';
 
 $contrast-warnings: true !default;
@@ -39,7 +40,7 @@ $success-color: null !default;
 
     $rgb: if($rgb < 0.03928, divide($rgb, 12.92), pow(divide($rgb + 0.055, 1.055), 2.4));
 
-    $rgba2: append($rgba2, $rgb);
+    $rgba2: list.append($rgba2, $rgb);
   }
 
   @return 0.2126 * nth($rgba2, 1) + 0.7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3);

@@ -7,6 +7,7 @@
 ////
 
 @use "sass:color";
+@use "sass:list";
 
 // Patch to fix issue #12080
 $-zf-bp-value: null;
@@ -101,7 +102,7 @@ $-zf-bp-value: null;
 
   @for $i from 2 through $bars {
     $offset: ($weight + $spacing) * ($i - 1);
-    $shadow: append($shadow, 0 $offset 0 $color, comma);
+    $shadow: list.append($shadow, 0 $offset 0 $color, comma);
   }
 
   // Icon container
@@ -133,7 +134,7 @@ $-zf-bp-value: null;
     // Generate CSS
     @for $i from 2 through $bars {
       $offset: ($weight + $spacing) * ($i - 1);
-      $hover-shadow: append($hover-shadow, 0 $offset 0 $color-hover, comma);
+      $hover-shadow: list.append($hover-shadow, 0 $offset 0 $color-hover, comma);
     }
 
     &:hover::after {

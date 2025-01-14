@@ -6,6 +6,8 @@
 /// @group breakpoints
 ////
 
+@use "sass:list";
+
 /// Patch to fix issue #12080
 $-zf-size: null;
 
@@ -274,7 +276,7 @@ $breakpoint-classes: (small medium large) !default;
       $found-key: true;
     }
     @if not $found-key {
-      $list: append($list, $name);
+      $list: list.append($list, $name);
     }
   }
   @return $list;

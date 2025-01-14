@@ -2,6 +2,7 @@
 // https://get.foundation
 // Licensed under MIT Open Source
 
+@use "sass:list";
 @import 'math';
 
 $unit-warnings: true !default;
@@ -52,7 +53,7 @@ $global-font-size: 100% !default;
   }
 
   @for $i from 1 through $count {
-    $rem-values: append($rem-values, -zf-to-rem(nth($values, $i), $base));
+    $rem-values: list.append($rem-values, -zf-to-rem(nth($values, $i), $base));
   }
 
   @return $rem-values;
