@@ -7,6 +7,7 @@
 ////
 
 @use "sass:color";
+@use "sass:math";
 
 // Patch to fix issue #12080
 $-zf-bp-value: null;
@@ -96,7 +97,7 @@ $-zf-bp-value: null;
   $spacing: divide($height - ($weight * $bars), $bars - 1);
 
   @if unit($spacing) == 'px' {
-    $spacing: floor($spacing);
+    $spacing: math.floor($spacing);
   }
 
   @for $i from 2 through $bars {
