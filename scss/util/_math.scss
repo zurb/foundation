@@ -31,7 +31,7 @@
 ///
 /// @returns {Number} The product of the exponentiation.
 @function pow($base, $exponent, $prec: 16) {
-  @if (floor($exponent) != $exponent) {
+  @if (math.floor($exponent) != $exponent) {
     $prec2: pow(10, $prec);
     $exponent: round($exponent * $prec2);
     $denominator: gcd($exponent, $prec2);
