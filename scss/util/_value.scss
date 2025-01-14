@@ -2,6 +2,8 @@
 // https://get.foundation
 // Licensed under MIT Open Source
 
+@use "sass:list";
+
 ////
 /// @group functions
 ////
@@ -105,8 +107,8 @@
     $values: ();
 
     @each $key, $val in $map {
-      $keys: append($keys, $key);
-      $values: append($values, $val);
+      $keys: list.append($keys, $key);
+      $values: list.append($values, $val);
     }
 
     @if $keep == 'keys' {

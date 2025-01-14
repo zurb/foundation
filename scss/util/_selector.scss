@@ -6,6 +6,8 @@
 /// @group functions
 ////
 
+@use "sass:list";
+
 /// Generates a selector with every text input type. You can also filter the list to only output a subset of those selectors.
 ///
 /// @param {List|Keyword} $types [()] - A list of text input types to use. Leave blank to use all of them.
@@ -20,7 +22,7 @@
   }
 
   @each $type in $types {
-    $return: append($return, unquote('[type=\'#{$type}\']#{$modifier}'), comma);
+    $return: list.append($return, unquote('[type=\'#{$type}\']#{$modifier}'), comma);
   }
 
   @return $return;
