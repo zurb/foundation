@@ -69,7 +69,8 @@ class Reveal extends Plugin {
         'role': 'dialog',
         'aria-hidden': true,
         'data-yeti-box': this.id,
-        'data-resize': this.id
+        'data-resize': this.id,
+        'aria-modal': true
     });
 
     if(this.$overlay) {
